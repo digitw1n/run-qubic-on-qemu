@@ -191,7 +191,7 @@ Make sure the VM is always stopped when you mount it's image to the host file-sy
 
 Let's assume you have just finished the above step, VM boots the EFI shell but you have nothing on fs0:\.
 
-Stop your VM via `sudo virsh stop Computor`
+Stop your VM via `sudo virsh destroy Computor`
 
 Verify computor is not running via `sudo virsh list --all`. It should say stopped.
 
