@@ -148,6 +148,16 @@ Save the configuration file and run;
 This process has been tested on Ubuntu 22.04
 `sudo apt update && sudo apt-get install -y libvirt-daemon libvirt-clients libvirt-daemon-system virtinst ovmf`
 
+As per this guide, you will be streaming the qubic logs into a file which will be accessible from the host.
+In order to prevent the log streaming to cut off, you will need to increase the maximum file size in virtlogd.
+
+`sudo nano /etc/libvirt/virtlogd.conf`
+
+Go to the bottom and uncomment the max_size line and set it to 200097152.
+`max_size = 200097152`
+
+Restart libvirt, `sudo systemctl restart libvirtd`
+
 ## Configure the VM for computor
 
 First, create a virtual image for the guest.
@@ -183,7 +193,7 @@ My startup.nsh looks as follows:
 reconnect -r
 timezone -s 00:00
 ifconfig -s eth0 dhcp
-fs0:\
+fs0:
 ```
 ## Install qubic on the VM
 
