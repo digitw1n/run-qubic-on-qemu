@@ -11,7 +11,7 @@
 
 ## Overview
 ~~Virtualbox has had its chance to prove itself, but failed due to networking issues. It's not surprising why most production workloads use Qemu and not VBox.~~
-I no longer recommend using Qemu due to a bug randomly wrecking the network interface. This happens with both virtio/e1000 emulation. VirtualBox is back to the throne.
+**I no longer recommend using Qemu due to a bug randomly wrecking the network interface. This happens with both virtio/e1000 emulation. VirtualBox is back to the throne.**
 
 The bridged networking set up could be still useful tho but i don't recommend using software bridge. It's much easier to use macvtap which allows you to keep default Hetzner netplan config
 and still allows you to use your additional ip for your computor.
@@ -48,6 +48,8 @@ Click on the icon where the arrow is pointing to.
 
 
 ## Configure bridged interface on the host
+Consider using macvtap interface instead as described below Overview at the top of the page. You won't need to modify any configuration if you go the macvtap route.
+
 Once you have received your additional IP from Hetzner, configure the bridge interface on the host.
 Any mistakes here and your server will no longer be accessible and you will have to activate rescue system to recover it so please focus.
 
