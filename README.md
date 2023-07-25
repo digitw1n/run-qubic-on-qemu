@@ -10,7 +10,18 @@
 - [Access the VM](#accessing-computor-vm)
 
 ## Overview
-Virtualbox has had its chance to prove itself, but failed due to networking issues. It's not surprising why most production workloads use Qemu and not VBox.
+~~Virtualbox has had its chance to prove itself, but failed due to networking issues. It's not surprising why most production workloads use Qemu and not VBox.~~
+I no longer recommend using Qemu due to a bug randomly wrecking the network interface. This happens with both virtio/e1000 emulation. VirtualBox is back to the throne.
+
+The bridged networking set up could be still useful tho but i don't recommend using software bridge. It's much easier to use macvtap which allows you to keep default Hetzner netplan config
+and still allows you to use your additional ip for your computor.
+
+```
+sudo ip link add link enp5s0 name macvtap0 type macvtap
+sudo ip link set macvtap0 address SE:CO:ND:AR:YM:AC up
+ip link show macvtap0
+```
+Then select bridged in Virtualbox and use the newly created `macvtap0` interface. No further configuration required.
 
 This guide will walk you through the steps to install Qemu in bridged mode using a Hetzner dedicated server with Ubuntu.
 
